@@ -10,6 +10,7 @@ import React from 'react';
 
 import store from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
+import { createContactAction, deleteContactAction, filterContactAction } from 'store/slice';
 
 
 const App = () => {
@@ -28,6 +29,8 @@ const App = () => {
   // const [filter, setFilter] = useState(null);
   const store = useSelector((store) => store)
   console.log("store in App >>", store)
+  console.log('store in App contacts>>', store.contacts.contacts);
+  console.log('store in App filter>>', store.contacts.filter);
 
   const dispatch = useDispatch();
   //side effects
@@ -43,7 +46,7 @@ const App = () => {
 
   //create new contact
   const createContact = (contactName, number) => {
-    const alreadyExist = store.contacts.find(
+    const alreadyExist = store.contacts.contacts.find(
       item => item.contactName === contactName
     );
     if (alreadyExist) return alert(`Contact '${contactName}' already exist`);
@@ -53,51 +56,31 @@ const App = () => {
       contactName,
       number,
     };
-
-    //setContacts([newContact, ...contacts]);
-    dispatch({type: 'createTodo', payload: newContact })
+    dispatch(createContactAction(newContact));
   };
 
   // delete
-  // const handleDelete = id => {
-  //   const newContacts = contacts.filter(one => one.id !== id);
-  //   setContacts(newContacts);
-
-  //   if (filter) {const newFiltered = filter.filter(one => one.id !== id);
-  //   setFilter(newFiltered);}
-  // };
+  const handleDelete = id => {
+dispatch(deleteContactAction(id));
+  };
 
   //filter
-  // const filterContacts = filterQuery => {
-  //   if (filterQuery.length) {
-  //     const filtered = contacts.filter(one =>
-  //       one.contactName.toLowerCase().includes(filterQuery.toLowerCase())
-  //     );
-  //     setFilter(filtered);
-  //   } else setFilter(null);
-  // };
+    const filterContacts = filterQuery => {
+      dispatch(filterContactAction(filterQuery));
+    };
 
   return (
-    // <Section>
-    //   <FormWrapper>
-    //     <Form createContact={createContact} />
-    //   </FormWrapper>
-    //   <ListWrapper>
-    //     <Filter filterContacts={filterContacts} />
-    //     <ContactList
-    //       contacts={contacts}
-    //       handleDelete={handleDelete}
-    //       filter={filter}
-    //     />
-    //   </ListWrapper>
-    // </Section>
     <Section>
       <FormWrapper>
         <Form createContact={createContact} />
       </FormWrapper>
       <ListWrapper>
-        <Filter />
-        <ContactList contacts={store.contacts} />
+        <Filter filterContacts={filterContacts} />
+        <ContactList
+          contacts={store.contacts.contacts}
+          handleDelete={handleDelete}
+          filter={store.contacts.filter}
+        />
       </ListWrapper>
     </Section>
   );
