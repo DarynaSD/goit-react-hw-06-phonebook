@@ -17,8 +17,3 @@ const ContactList = ({ contacts, handleDelete, filter }) => {
 
 export default ContactList
 
-				// <ul className='list-group'>
-				// 	{(this.state.filteredTodo ?? this.state.todo).map((el) => (
-				// 		<Todo todo={el} key={el.id} handleDelete={this.handleDelete} />
-				// 	))}
-				// </ul>
