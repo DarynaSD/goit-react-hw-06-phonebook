@@ -18,11 +18,7 @@ export const store = configureStore({ reducer: rootReducer, middleware: (getDefa
       },
     }), });
 export const persistor = persistStore(store)
-console.log('store :>>', store)
 
-console.log('state :>>', store.getState())
-// console.log('store >>', store);
-// console.log(store.getState());
 
 
 //old example

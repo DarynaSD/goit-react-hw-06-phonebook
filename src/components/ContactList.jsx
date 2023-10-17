@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import ContactItem from './ContactItem'
-import {List} from './styled/Parts.styled'
+import ContactItem from './ContactItem';
+import { List } from './styled/Parts.styled';
 
 const ContactList = ({ contacts, handleDelete, filter }) => {
-  console.log('ContactList :>>', contacts);
-  console.log('ContactList :>>', filter);
+  // console.log('ContactList :>>', contacts);
+  // console.log('ContactList :>>', filter);
   return (
     <List>
-      {(contacts.contacts.filter ?? contacts.contacts).map(oneCont => (
+      {(filter ?? contacts).map(oneCont => (
         <ContactItem
           item={oneCont}
           key={oneCont.id}
@@ -17,7 +17,6 @@ const ContactList = ({ contacts, handleDelete, filter }) => {
       ))}
     </List>
   );
-}
+};
 
-export default ContactList
-
+export default ContactList;

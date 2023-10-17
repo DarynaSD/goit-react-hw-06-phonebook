@@ -1,34 +1,30 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { INITAL } from './initialState';
 
 export const contactSlice = createSlice({
-  name: 'contactsRedux',
+  name: 'contacts',
   initialState: INITAL,
   reducers: {
     createContactAction: (state, { payload }) => {
-      const currentState = current(state)
-      console.log(currentState)
       return {
-        ...currentState,
-        contacts: currentState.contacts.contacts ? [payload, ...currentState.contacts.contacts] : [payload],
+        ...state,
+        contacts: state.contacts ? [payload, ...state.contacts] : [payload],
       };
     },
 
     deleteContactAction: (state, { payload }) => {
-      //const state = current(state)
       state.contacts = state.contacts.filter(el => el.id !== payload);
     },
 
-    // filterContactAction: (state, { payload }) => {
-    //   const currentState = current(state)
-    //   if (payload.length) {
-    //     currentState.filter = currentState.contacts.filter(one =>
-    //       one.contactName.toLowerCase().includes(payload.toLowerCase())
-    //     );
-    //     } else
-    // currentState.filter = null;
-    // },
+    filterContactAction: (state, { payload }) => {
+      if (payload.length) {
+        state.filter = state.contacts.filter(one =>
+          one.contactName.toLowerCase().includes(payload.toLowerCase())
+        );
+        } else
+    state.filter = null;
+    },
   },
 });
 
