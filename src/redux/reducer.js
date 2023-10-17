@@ -6,11 +6,11 @@ import persistReducer from "redux-persist/es/persistReducer";
 
 const persistConfig = {
   key: 'root',
-    storage,
+  storage,
   blackList: ['filter'],
 }
 const persistedReducer = persistReducer(persistConfig, contactReducer)
 
 export const rootReducer = {
-    contacts: persistedReducer,
+    contactsHandler: persistedReducer,
 }

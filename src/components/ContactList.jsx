@@ -8,11 +8,15 @@ const ContactList = ({ contacts, handleDelete, filter }) => {
   console.log('ContactList :>>', filter);
   return (
     <List>
-          {(filter ?? contacts).map((oneCont) => (
-              <ContactItem item={oneCont} key={oneCont.id} handleDelete={ handleDelete}/>
+      {(contacts.contacts.filter ?? contacts.contacts).map(oneCont => (
+        <ContactItem
+          item={oneCont}
+          key={oneCont.id}
+          handleDelete={handleDelete}
+        />
       ))}
     </List>
-  )
+  );
 }
 
 export default ContactList
