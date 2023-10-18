@@ -5,5 +5,5 @@ export const INITAL = {
       { id: 'id-3', contactName: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', contactName: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: null,
+    filter: '',
 }

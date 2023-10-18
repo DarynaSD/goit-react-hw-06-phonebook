@@ -19,12 +19,10 @@ export const contactSlice = createSlice({
 
     filterContactAction: (state, { payload }) => {
       if (payload.length) {
-        state.filter = state.contacts.filter(one =>
-          one.contactName.toLowerCase().includes(payload.toLowerCase())
-        );
-        } else
-    state.filter = null;
-    },
+        state.filter = payload
+      } else
+        state.filter = '';
+    }
   },
 });
 
