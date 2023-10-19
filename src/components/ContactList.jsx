@@ -3,16 +3,13 @@ import React from 'react';
 import ContactItem from './ContactItem';
 import { List } from './styled/Parts.styled';
 import { useSelector } from 'react-redux';
+import { selectorContacts, selectorFilter } from 'redux/selectors';
 
 const ContactList = () => {
   // console.log('ContactList :>>', contacts);
   // console.log('ContactList :>>', filter);
-  const contacts = useSelector((store => store.contactsHandler.contacts));
-  const filter = useSelector((store => store.contactsHandler.filter));
-
-  console.log('ContactList :>>', contacts);
-  console.log('ContactList :>>', filter);
-
+  const contacts = useSelector(selectorContacts);
+  const filter = useSelector(selectorFilter);
 
   const filteredContacts = () => {
     if (filter) {

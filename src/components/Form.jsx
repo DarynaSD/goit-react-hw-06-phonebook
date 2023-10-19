@@ -5,7 +5,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createContactAction } from 'redux/slice';
-// import { store } from 'redux/store';
+import { selectorContacts } from 'redux/selectors';
 
 const Form = () => {
   const [contactName, setContactName] = useState('');
@@ -13,13 +13,11 @@ const Form = () => {
 // const newstore = current(store)
 
   const dispatch = useDispatch();
-  const contacts = useSelector(store => store.contactsHandler.contacts);
-  console.log(contacts);
+  const contacts = useSelector(selectorContacts);
 
 
   //
   const createContact = (contactName, number) => {
-    console.log(contacts);
     const alreadyExist = contacts.find(
       item => item.contactName === contactName
     );
